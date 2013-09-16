@@ -9,29 +9,29 @@ class ProductsController < ApplicationController
 	end
 
 	def show
-		@products = Product.find (params[:id])
+		@product = Product.find (params[:id])
 
 		respond_to do |format|
 			format.html
-			format.json {render json: @products}
+			format.json {render json: @product}
 		end
 	end
 
 	def new
-		@products = Product.new
+		@product = Product.new
 
 		respond_to do |format|
 			format.html
-			format.json {render json: @products}
+			format.json {render json: @product}
 		end
 	end
 
 	def edit
-		@products = Product.find (params[:id])
+		@product = Product.find (params[:id])
 	end
 
 	def create
-		@products = Product.new(params[:product])
+		@product = Product.new(products_params)
 		respond_to do |format| 
 		if @product.save
 			format.html {redirect_to @product, notice: 'Product was successfully created!'}
@@ -44,10 +44,10 @@ class ProductsController < ApplicationController
 	end
 
 	def update
-		@products = product.find (params[:id])
+		@product = product.find (params[:id])
 
 		respond_to do |format|
-			if @product.update_attributes(params[:product])
+			if @product.update_attributes(products_params)
 			format.html {redirect_to @product, notice: 'Product was successfully updated'}
 			format.json {head :no_content}
 		else
@@ -67,4 +67,9 @@ class ProductsController < ApplicationController
 			format.json {head :no_content}
 		end
 	end
+
+	def products_params 
+		params.require(:product).permit(:name, :description, :price_in_cents)
+	end
+
 end

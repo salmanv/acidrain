@@ -1,11 +1,13 @@
-<h1>Products</h1>
-<p>ahhahahahhahahah</p>
-
+<h1>Products-ENTIRE INVENTORY</h1>
 <p> 
-	<%= @products[:name] %>
-</p><p>
-	<%= @products[:description] %>
-</p>
-	<%= @products.formatted_price %>
+
+<% @products.each do |product| %>
+	<h2><%= link_to product.name, product %></h2>
+	<p>Product Descpription: <%= product.description %></p>
+	<p>Price: <%= product.formatted_price %></p>
+<% end %>
 
 </p>
+
+#this step is extreemly important. remember you are iterating over products 
+#so that each product displays the name, decription, and price of the products

@@ -16,6 +16,7 @@ class ProductsController < ApplicationController
 			format.json {render json: @product}
 		end
 	end
+	
 
 	def new
 		@product = Product.new
